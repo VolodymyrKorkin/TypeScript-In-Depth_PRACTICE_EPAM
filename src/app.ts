@@ -140,3 +140,19 @@ function getBookTitlesByCategory(inputCategory: Category): string[] {
 function logBookTitles(titles: Array<string>): void {
     titles.forEach(title => console.log(title));
 }
+logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+
+
+// 02.01.08 ----------------------------------------------------------------------------------------
+// 8.	Реалізуйте функцію getBookAuthorByIndex(), яка приймає index книжки у масиві та повертає пару: назву книжки + автор.
+// Використовуйте tuple для типу, що повертається. Викличте цю функцію.
+// -------------------------------------------------------------------------------------------------
+
+function getBookAuthorByIndex(index: number): [string, string] {
+    const books = getAllBooks();
+
+    const { title, author } = books[index];
+
+    return [title, author];
+}
+console.log(getBookAuthorByIndex(0));
