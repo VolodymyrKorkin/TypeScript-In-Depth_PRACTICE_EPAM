@@ -100,6 +100,10 @@ type Books = {
     category: Category;
 }[];
 
+// 02.01.05 ----------------------------------------------------------------------------------------
+// 5.	Додайте категорію до об'єктів у функції getAllBooks()
+// -------------------------------------------------------------------------------------------------
+
 function getAllBooks(): Books {
     const books: Books = [
         { id: 1, title: 'Refactoring JavaScript', category: Category.JavaScript, author: 'Evan Burchard', available: true},
@@ -109,3 +113,21 @@ function getAllBooks(): Books {
     ];
     return books;
 }
+
+// 02.01.06 ----------------------------------------------------------------------------------------
+// 6.	Реалізуйте функцію getBookTitlesByCategory(), яка на вхід отримує категорію та повертає масив найменувань книг, що належать зазначеній категорії.
+// -------------------------------------------------------------------------------------------------
+
+function getBookTitlesByCategory(inputCategory: Category): string[] {
+    const books = getAllBooks();
+
+    const titles = books
+        .filter(book => book.category === inputCategory)
+        .map(book => book.title);
+        // Деструктуризация
+        // .map( ({ title }) => title);
+
+    return titles;
+}
+
+
