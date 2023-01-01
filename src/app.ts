@@ -10,10 +10,10 @@ function showHello(divName: string, name: string) {
 // 01 TypeScript In-Depth
 // ``````````````````````````````````````````````````````````````````````````````````````````````````
 
+
 // **************************************************************************************************
 // 02. Types Basics
 // **************************************************************************************************
-
 
 // ==================================================================================================
 // Task 02.01. Basic Types
@@ -41,22 +41,22 @@ function showHello(divName: string, name: string) {
 //     return books;
 // }
 
-type Books = {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-}[];
+// type Books = {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+// }[];
 
-function getAllBooks(): Books {
-    const books: Books = [
-        { id: 1, title: 'Refactoring JavaScript', author: 'Evan Burchard', available: true},
-        { id: 2, title: 'JavaScript Testing', author: 'Liang Yuxian Eugene', available: false },
-        { id: 3, title: 'CSS Secrets', author: 'Lea Verou', available: true },
-        { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', author: 'Andrea Chiarelli', available: true }
-    ];
-    return books;
-}
+// function getAllBooks(): Books {
+//     const books: Books = [
+//         { id: 1, title: 'Refactoring JavaScript', author: 'Evan Burchard', available: true},
+//         { id: 2, title: 'JavaScript Testing', author: 'Liang Yuxian Eugene', available: false },
+//         { id: 3, title: 'CSS Secrets', author: 'Lea Verou', available: true },
+//         { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', author: 'Andrea Chiarelli', available: true }
+//     ];
+//     return books;
+// }
 // console.log(getAllBooks());
 
 
@@ -80,3 +80,32 @@ function logFirstAvailable(books: Books): void {
 // -------------------------------------------------------------------------------------------------
 
 logFirstAvailable(getAllBooks());
+
+// 02.01.04 ----------------------------------------------------------------------------------------
+// 4.	Об’явіть enum Category для зберігання наступних категорій книг:
+//      a.	JavaScript
+//      b.	CSS
+//      c.	HTML
+//      d.	TypeScript
+//      e.	Angular
+// -------------------------------------------------------------------------------------------------
+
+enum Category { JavaScript, CSS, HTML, TypeScript, Angular};
+
+type Books = {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+}[];
+
+// function getAllBooks(): Books {
+//     const books: Books = [
+//         { id: 1, title: 'Refactoring JavaScript', category: Category.JavaScript, author: 'Evan Burchard', available: true},
+//         { id: 2, title: 'JavaScript Testing', category: Category.JavaScript, author: 'Liang Yuxian Eugene', available: false },
+//         { id: 3, title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true },
+//         { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', category: Category.JavaScript, author: 'Andrea Chiarelli', available: true }
+//     ];
+//     return books;
+// }
