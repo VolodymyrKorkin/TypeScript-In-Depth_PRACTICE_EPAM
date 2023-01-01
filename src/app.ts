@@ -124,10 +124,19 @@ function getBookTitlesByCategory(inputCategory: Category): string[] {
     const titles = books
         .filter(book => book.category === inputCategory)
         .map(book => book.title);
-        // Деструктуризация
-        // .map( ({ title }) => title);
-
     return titles;
+
+    // Деструктуризация
+    // return books
+    //     .filter( ({category}) => category === inputCategory )
+    //     .map( ({ title }) => title);
 }
 
+// 02.01.07 ----------------------------------------------------------------------------------------
+// 7.	Реалізуйте функцію logBookTitles(), яка приймає масив рядків та виводить його в консоль.
+// Викличте функції getBookTitlesByCategory() та logBookTitles().
+// -------------------------------------------------------------------------------------------------
 
+function logBookTitles(titles: Array<string>): void {
+    titles.forEach(title => console.log(title));
+}
