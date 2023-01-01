@@ -69,6 +69,14 @@ function getAllBooks(): Books {
 function logFirstAvailable(books: Books): void {
     console.log(`Number of books: ${books.length}`);
 
-    const title = books.find(book => book.available === true).title;
+    // const title = books.find(book => book.available === true)?.title;
+    // Деструктуризація
+    const title = books.find( ({available}) => available )?.title;
     console.log(`First available book: ${title}`);
 }
+
+// 02.01.03 ----------------------------------------------------------------------------------------
+// 3.	Запустіть функцію logFirstAvailable()
+// -------------------------------------------------------------------------------------------------
+
+logFirstAvailable(getAllBooks());
