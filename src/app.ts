@@ -221,6 +221,19 @@ function getAllBooks2(): readonly Book[] {
     return books2;
 }
 
+// 02.02.02 ----------------------------------------------------------------------------------------
+// 2.	Додайте модифікатор readonly для параметра функції logFirstAvailable()
+// -------------------------------------------------------------------------------------------------
+function logFirstAvailable2(books: readonly Book[]): void {
+    console.log(`Number of books: ${books.length}`);
+
+    const title = books.find(book => book.available === true)?.title;
+    console.log(`First available book: ${title}`);
+}
+
+
+
+
 
 
 
