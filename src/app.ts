@@ -179,3 +179,17 @@ console.log(getBookAuthorByIndex(0));
 //     ];
 // Для підрахунків використовуйте тип bigint
 // -------------------------------------------------------------------------------------------------
+
+function calcTotalPages(): void {
+    const data = [
+        { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
+        { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
+        { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }
+    ];
+
+    const result = data.reduce((acc: bigint, obj ) => {
+        return acc + BigInt(obj.books) * BigInt(obj.avgPagesPerBook);
+    }, 0n);
+
+    console.log(result);
+}
