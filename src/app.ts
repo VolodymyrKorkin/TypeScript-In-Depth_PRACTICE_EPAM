@@ -148,7 +148,20 @@ logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 // Використовуйте tuple для типу, що повертається. Викличте цю функцію.
 // -------------------------------------------------------------------------------------------------
 
-function getBookAuthorByIndex(index: number): [string, string] {
+// function getBookAuthorByIndex(index: number): [string, string] {
+//     const books = getAllBooks();
+
+//     const { title, author } = books[index];
+
+//     return [title, author];
+// }
+// console.log(getBookAuthorByIndex(0));
+
+// 02.01.09 ----------------------------------------------------------------------------------------
+// 9.	Внесіть зміни до типу, що повертається функцією getBookAuthorByIndex() – додайте мітки: title, author для типу tuple
+// -------------------------------------------------------------------------------------------------
+
+function getBookAuthorByIndex(index: number): [title: string, author: string] {
     const books = getAllBooks();
 
     const { title, author } = books[index];
@@ -156,3 +169,13 @@ function getBookAuthorByIndex(index: number): [string, string] {
     return [title, author];
 }
 console.log(getBookAuthorByIndex(0));
+
+// 02.01.10 ----------------------------------------------------------------------------------------
+// 10.	Реалізуйте функцію calcTotalPages(), яка підраховує кількість сторінок книг у трьох бібліотеках міста, використовуючи такі дані:
+//     [
+//     { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
+//     { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
+//     { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }
+//     ];
+// Для підрахунків використовуйте тип bigint
+// -------------------------------------------------------------------------------------------------
