@@ -329,3 +329,18 @@ function getBookTitlesByCategory2(inputCategory: Category = Category.JavaScript)
 }
 
 // console.log(getBookTitlesByCategory2());
+
+// 03.02.02 -------------------------------------------------------------------------------------------
+// 3.	Внесіть зміни до функції logFirstAvailable() –
+// додайте для параметра значення за замовчуванням – виклик функції getAllBooks().
+// Викличте цю функцію без аргументів.
+// -------------------------------------------------------------------------------------------------
+
+function logFirstAvailable3(books: readonly Book[] = getAllBooks()): void {
+    console.log(`Number of books: ${books.length}`);
+
+    const title = books.find(book => book.available === true)?.title;
+    console.log(`First available book: ${title}`);
+}
+
+// logFirstAvailable3();
