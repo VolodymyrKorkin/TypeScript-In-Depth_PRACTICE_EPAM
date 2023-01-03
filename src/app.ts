@@ -257,7 +257,7 @@ function createCustomerID(name: string, id: number): string {
 // -------------------------------------------------------------------------------------------------
 
 const myID: string = createCustomerID('Ann', 10);
-console.log(myID); // 10/Ann
+// console.log(myID); // 10/Ann
 
 // 03.01.03 -------------------------------------------------------------------------------------------
 // 3.	Об’явіть змінну idGenerator і вкажіть тип функції createCustomerID().
@@ -277,7 +277,7 @@ idGenerator = (name: string, id: number) => `${id}/${name}`;
 // -------------------------------------------------------------------------------------------------
 
 idGenerator = createCustomerID;
-console.log(idGenerator('Boris', 20)); // 20/Boris
+// console.log(idGenerator('Boris', 20)); // 20/Boris
 
 
 // ==================================================================================================
@@ -308,6 +308,24 @@ function createCustomer(name: string, age?: number, city?: string): void {
     }
 }
 
-createCustomer('Anna');
-createCustomer('Anna', 30);
-createCustomer('Anna', 30, 'Kyiv');
+// createCustomer('Anna');
+// createCustomer('Anna', 30);
+// createCustomer('Anna', 30, 'Kyiv');
+
+
+// 03.02.02 -------------------------------------------------------------------------------------------
+// 2.	Внесіть зміни до функції getBookTitlesByCategory()
+// – додайте для параметра значення за замовчуванням Category.JavaScript.
+// Викличте цю функцію без аргументів.
+// -------------------------------------------------------------------------------------------------
+
+function getBookTitlesByCategory2(inputCategory: Category = Category.JavaScript): string[] {
+    const books = getAllBooks();
+
+    const titles = books
+        .filter(book => book.category === inputCategory)
+        .map(book => book.title);
+    return titles;
+}
+
+// console.log(getBookTitlesByCategory2());
