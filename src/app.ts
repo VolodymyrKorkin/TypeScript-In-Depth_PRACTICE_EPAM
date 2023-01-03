@@ -259,3 +259,12 @@ function createCustomerID(name: string, id: number): string {
 const myID: string = createCustomerID('Ann', 10);
 console.log(myID);
 
+// 03.01.03 -------------------------------------------------------------------------------------------
+// 3.	Об’явіть змінну idGenerator і вкажіть тип функції createCustomerID().
+// Надайте цій змінній функціональний вираз, використовуючи стрілочну функцію.
+// Тіло подібне до функції createCustomerID().
+// -------------------------------------------------------------------------------------------------
+
+// let idGenerator: (name: string, id: number) => string;
+let idGenerator: typeof createCustomerID;
+idGenerator = (name: string, id: number) => `${id}/${name}`;
