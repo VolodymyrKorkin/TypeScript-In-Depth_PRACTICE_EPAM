@@ -357,3 +357,23 @@ function getBookByID(id: number): Book {
     return books.find(book => book.id === id);
 }
 // console.log(getBookByID(1));
+
+
+// 03.02.05 -------------------------------------------------------------------------------------------
+// 5.	Створіть функцію сheckoutBooks(), яка приймає два параметри:
+//      a.	customer: string
+//      b.	bookIDs: number[] – змінне значення ідентифікаторів книжок (рест параметр)
+// Функція повинна перевірити доступність кожної книжки, заданої ідентифікатором, та повернути масив найменувань (title) книжок, які є доступними.
+// (available = true). Використовуйте функцію getBookById(). Також функція повинна виводити в консоль ім'я заданого клієнта.
+// -------------------------------------------------------------------------------------------------
+
+function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
+    console.log(`Customer: ${customer}`);
+
+    return bookIDs
+        .map(id => getBookByID(id))
+        .filter(book => book.available)
+        .map(book => book.title);
+}
+// console.log(сheckoutBooks('NoName Customer', 1, 3, 4));
+// console.log(сheckoutBooks('NoName Customer', ...[1, 3, 4]));
