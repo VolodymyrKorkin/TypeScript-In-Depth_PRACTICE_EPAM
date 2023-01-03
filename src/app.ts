@@ -79,7 +79,7 @@ function logFirstAvailable(books: Books): void {
 // 3.	Запустіть функцію logFirstAvailable()
 // -------------------------------------------------------------------------------------------------
 
-logFirstAvailable(getAllBooks());
+// logFirstAvailable(getAllBooks());
 
 // 02.01.04 ----------------------------------------------------------------------------------------
 // 4.	Об’явіть enum Category для зберігання наступних категорій книг:
@@ -90,7 +90,7 @@ logFirstAvailable(getAllBooks());
 //      e.	Angular
 // -------------------------------------------------------------------------------------------------
 
-enum Category { JavaScript, CSS, HTML, TypeScript, Angular};
+enum Category {JavaScript, CSS, HTML, TypeScript, Angular};
 
 type Books = {
     id: number;
@@ -140,7 +140,7 @@ function getBookTitlesByCategory(inputCategory: Category): string[] {
 function logBookTitles(titles: Array<string>): void {
     titles.forEach(title => console.log(title));
 }
-logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+// logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 
 
 // 02.01.08 ----------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ function getBookAuthorByIndex(index: number): [title: string, author: string] {
 
     return [title, author];
 }
-console.log(getBookAuthorByIndex(0));
+// console.log(getBookAuthorByIndex(0));
 
 // 02.01.10 ----------------------------------------------------------------------------------------
 // 10.	Реалізуйте функцію calcTotalPages(), яка підраховує кількість сторінок книг у трьох бібліотеках міста, використовуючи такі дані:
@@ -266,5 +266,15 @@ console.log(myID);
 // -------------------------------------------------------------------------------------------------
 
 // let idGenerator: (name: string, id: number) => string;
-let idGenerator: typeof createCustomerID;
+let idGenerator: typeof createCustomerID; // typeof в позиції типу
+// const a = typeof createCustomerID; // typeof в позиції значення
+// console.log (a); // 'function'
 idGenerator = (name: string, id: number) => `${id}/${name}`;
+
+
+// 03.01.04 -------------------------------------------------------------------------------------------
+// 4.	Надайте змінній idGenerator функцію createCustomerID() та викличте її. Отримане значення виведіть у консоль.
+// -------------------------------------------------------------------------------------------------
+
+idGenerator = createCustomerID;
+console.log(idGenerator('Boris', 20)); // 20/Boris
