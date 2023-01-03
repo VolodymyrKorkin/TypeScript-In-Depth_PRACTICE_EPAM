@@ -377,3 +377,12 @@ function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
 }
 // console.log(сheckoutBooks('NoName Customer', 1, 3, 4));
 // console.log(сheckoutBooks('NoName Customer', ...[1, 3, 4]));
+
+
+// 03.02.06 -------------------------------------------------------------------------------------------
+// 6.	Об’явіть змінну myBooks та збережіть у ній результат виклику функції
+// сheckoutBooks('Ann', 1, 2, 4). Виведіть результат у консоль.
+// -------------------------------------------------------------------------------------------------
+
+const myBooks = сheckoutBooks('Ann', 1, 2, 4);
+// console.log(myBooks);
