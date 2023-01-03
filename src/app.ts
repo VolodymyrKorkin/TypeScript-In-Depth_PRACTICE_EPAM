@@ -257,7 +257,7 @@ function createCustomerID(name: string, id: number): string {
 // -------------------------------------------------------------------------------------------------
 
 const myID: string = createCustomerID('Ann', 10);
-console.log(myID);
+console.log(myID); // 10/Ann
 
 // 03.01.03 -------------------------------------------------------------------------------------------
 // 3.	Об’явіть змінну idGenerator і вкажіть тип функції createCustomerID().
@@ -278,3 +278,36 @@ idGenerator = (name: string, id: number) => `${id}/${name}`;
 
 idGenerator = createCustomerID;
 console.log(idGenerator('Boris', 20)); // 20/Boris
+
+
+// ==================================================================================================
+// Task 03.02. Optional, Default and Rest Parameters
+// ==================================================================================================
+
+
+// 03.02.01 -------------------------------------------------------------------------------------------
+// 1.	Створіть функцію createCustomer(), яка приймає три параметри:
+//  a)	name: string – обов'язковий
+//  b)	age: number – необов'язковий
+//  c)	city: string – необов'язковий
+// Функція повинна виводити ім'я клієнта в консоль, а також,
+// якщо заданий вік, вона повинна додатково виводити вік у консоль.
+// Якщо задане місто, то додатково має виводити місто у консоль.
+// Викличте цю функцію з одним, двома та трьома аргументами.
+// -------------------------------------------------------------------------------------------------
+
+function createCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Customer name: ${name}`);
+
+    if (age) {
+        console.log(`Customer age: ${age}`);
+    }
+
+    if (city) {
+        console.log(`Customer city: ${city}`);
+    }
+}
+
+createCustomer('Anna');
+createCustomer('Anna', 30);
+createCustomer('Anna', 30, 'Kyiv');
