@@ -745,3 +745,16 @@ const favoriteAuthor: Author = {
     email: 'Anna@example.com',
     numBooksPublished: 2
 };
+
+
+// 04.03.05 ---------------------------------------------------------------------------------
+// 5.	Оголосіть змінну favoriteLibrarian, використовуючи інтерфейс Librarian,
+// задайте значення у вигляді літерала об'єкта.
+// ------------------------------------------------------------------------------------------
+
+const favoriteLibrarian: Librarian = {
+    name: 'Boris',
+    email: 'boris@example.com',
+    department: 'Classical Literature',
+    assistCustomer: null
+};
