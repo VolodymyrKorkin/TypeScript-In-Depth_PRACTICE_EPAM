@@ -467,3 +467,16 @@ function assertStringValue(data: any): asserts data is string {
         throw new Error('value should have been a string');
     }
 }
+
+
+// 03.04.02 ---------------------------------------------------------------------------------
+// 2.	Створіть функцію bookTitleTransform(), яка приймає один параметр – назву книжки (тип параметру any).
+// За допомогою assertStringValue перевіряє, чи назва книжки дійсно є рядком,
+// і якщо так, то повертає перевертень цього рядка, використовуючи спред оператор
+// і методи масиву reverse() і join().
+// ------------------------------------------------------------------------------------------
+
+function bookTitleTransform(title: any): string {
+    assertStringValue(title);
+    return [...title].reverse().join();
+}
