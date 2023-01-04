@@ -451,3 +451,19 @@ function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
 const checkedOutBooks = getTitles(false);
 // console.log(checkedOutBooks); // ['Liang Yuxian Eugene']0: "Liang Yuxian Eugene"length: 1[[Prototype]]: Array(0)
 
+
+// ==================================================================================================
+// Task 03.04. Assertion Functions
+// ==================================================================================================
+
+// 03.04.01 ---------------------------------------------------------------------------------
+// 1.	Створіть функцію-ствердження assertStringValue(), яка приймає один параметр типу any.
+// Функція повинна перевіряти, чи є тип переданого аргументу рядком.
+// Якщо ні, то генерувати виняток "value should have been a string".
+// ------------------------------------------------------------------------------------------
+
+function assertStringValue(data: any): asserts data is string {
+    if (typeof data !== 'string') {
+        throw new Error('value should have been a string');
+    }
+}
