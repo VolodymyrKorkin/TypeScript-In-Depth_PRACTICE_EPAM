@@ -677,7 +677,6 @@ interface DamageLogger {
 // 2.	Внесіть зміни до інтерфейсу Book:
 // використовуйте оголошений інтерфейс DamageLogger для поля markDamaged.
 // ------------------------------------------------------------------------------------------
-
 interface Book {
     id: number;
     title: string;
@@ -689,3 +688,12 @@ interface Book {
     // markDamaged?(reason: string): void; // (method)
     markDamaged?: DamageLogger;
 }
+
+
+// 04.02.03 ---------------------------------------------------------------------------------
+// 3.	Оголосіть змінну logDamage, використовуючи оголошений раніше інтерфейс DamageLogger.
+// Створіть функцію, яка задовольняє цьому інтерфейсу, і надайте її оголошеній змінній. Викличте функцію.
+// ------------------------------------------------------------------------------------------
+
+const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+// logDamage('missing back cover'); // Damaged: missing back cover
