@@ -572,15 +572,15 @@ function printBook(book: Book): void {
 // }
 // ------------------------------------------------------------------------------------------
 
-const myBook = {
-    id: 5,
-    title: 'Colors, Backgrounds, and Gradients',
-    author: 'Eric A. Meyer',
-    available: true,
-    category: Category.CSS,
-    year: 2015,
-    copies: 3
-};
+// const myBook = {
+//     id: 5,
+//     title: 'Colors, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     year: 2015,
+//     copies: 3
+// };
 
 
 // 04.01.06 ---------------------------------------------------------------------------------
@@ -604,4 +604,70 @@ interface Book {
     available: boolean;
     category: Category;
     pages?: number;
+}
+
+
+// 04.01.08 ---------------------------------------------------------------------------------
+// 8.	Вкажіть явно для змінної myBook тип Book. Ви знову отримаєте помилку.
+// Видаліть властивості year, copies. Додайте властивість pages: 200.
+// ------------------------------------------------------------------------------------------
+
+// const myBook: Book = {
+//     id: 5,
+//     title: 'Colors, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     // year: 2015,
+//     // copies: 3,
+//     pages: 200
+// };
+
+
+// 04.01.09 ---------------------------------------------------------------------------------
+// 9.	Додайте в інтерфейс Book необов'язкову властивість markDamaged, яка є методом.
+// Метод приймає на вхід рядковий параметр reason і нічого не повертає.
+// Додайте цей метод до myBook. Метод повинен виводити рядок
+// `Damaged: ${reason}`. Викличте цей метод та передайте рядок 'missing back cover'.
+// ------------------------------------------------------------------------------------------
+
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+    pages?: number;
+    markDamaged?: (reason: string) => void; // property
+    // markDamaged?(reason: string): void; // (method)
+}
+
+const myBook: Book = {
+    id: 5,
+    title: 'Colors, Backgrounds, and Gradients',
+    author: 'Eric A. Meyer',
+    available: true,
+    category: Category.CSS,
+    // year: 2015,
+    // copies: 3,
+    pages: 200,
+    markDamaged: (reason: string) => console.log(`Damaged: ${reason}`)
+    // markDamaged(reason: string) {
+    //     console.log(`Damaged: ${reason}`);
+    // }
+};
+// myBook.markDamaged('missing back cover'); // Damaged: missing back cover
+
+
+
+// ==================================================================================================
+// Task 04.02. Defining an Interface for Function Types
+// ==================================================================================================
+
+// 04.02.01 ---------------------------------------------------------------------------------
+// 1.	Оголосіть інтерфейс DamageLogger, який описуватиме тип функції,
+// яка приймає один рядковий параметр і нічого не повертає.
+// ------------------------------------------------------------------------------------------
+interface DamageLogger {
+    (reason: string): void;
 }
