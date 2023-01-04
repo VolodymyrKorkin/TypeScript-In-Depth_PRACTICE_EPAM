@@ -781,3 +781,15 @@ const offer: any = {
 };
 
 
+// 04.04.02 ---------------------------------------------------------------------------------
+// 2.	Виведіть у консоль значення таких виразів, використовуючи оператор optional chaining (?.)
+// a.	offer.magazine
+// b.	offer.magazine.getTitle()
+// c.	offer.book.getTitle()
+// d.	offer.book.authors[0]
+// ------------------------------------------------------------------------------------------
+
+// console.log(offer.magazine);
+// console.log(offer.magazine?.getTitle());
+// console.log(offer.book.getTitle?.());
+// console.log(offer.book.authors?.[0]);
