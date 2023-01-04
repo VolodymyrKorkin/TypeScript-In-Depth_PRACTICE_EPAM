@@ -487,8 +487,8 @@ function bookTitleTransform(title: any): string {
 // 3.	Викличте функцію bookTitleTransform() двічі і передайте їй рядкове та числове значення.
 // ------------------------------------------------------------------------------------------
 
-console.log(bookTitleTransform('Learn TypeScript')); // tpircSepyT nraeL
-console.log(bookTitleTransform(123)); // Uncaught Error: value should have been a string
+// console.log(bookTitleTransform('Learn TypeScript')); // tpircSepyT nraeL
+// console.log(bookTitleTransform(123)); // Uncaught Error: value should have been a string
 
 
 
@@ -582,3 +582,10 @@ const myBook = {
     copies: 3
 };
 
+
+// 04.01.06 ---------------------------------------------------------------------------------
+// 6.	Викличте функцію printBook() та передайте їй myBook.
+// Жодних помилок при цьому не повинно з'являтися.
+// ------------------------------------------------------------------------------------------
+
+printBook(myBook); // Colors, Backgrounds, and Gradients by Eric A. Meyer
