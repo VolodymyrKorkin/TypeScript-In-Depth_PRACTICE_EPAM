@@ -671,3 +671,21 @@ const myBook: Book = {
 interface DamageLogger {
     (reason: string): void;
 }
+
+
+// 04.02.02 ---------------------------------------------------------------------------------
+// 2.	Внесіть зміни до інтерфейсу Book:
+// використовуйте оголошений інтерфейс DamageLogger для поля markDamaged.
+// ------------------------------------------------------------------------------------------
+
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+    pages?: number;
+    // markDamaged?: (reason: string) => void; // property
+    // markDamaged?(reason: string): void; // (method)
+    markDamaged?: DamageLogger;
+}
