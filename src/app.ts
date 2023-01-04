@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+
 // Greeting (check if webpack works)
 showHello('greeting', 'TypeScript');
 
@@ -386,3 +388,56 @@ function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
 
 const myBooks = сheckoutBooks('Ann', 1, 2, 4);
 // console.log(myBooks);
+
+
+
+// ==================================================================================================
+// Task 03.03. Function Overloading
+// ==================================================================================================
+
+// 03.03.01 -------------------------------------------------------------------------------------------
+// 1.	Додайте в першому рядку app.ts опцію для ESLint /* eslint-disable no-redeclare */.
+// Ця опція необхідна для оголошення кількох сигнатур функцій з однаковими іменами
+// -------------------------------------------------------------------------------------------------
+
+
+
+// 03.03.02 ----------------------------------------------------------------------
+// 2.	Створіть функцію getTitles(), яка може приймати 1 або 2 параметри:
+//      a.	якщо функція приймає 1 параметр, він може бути або string (author), або boolean (available)
+//      b.	якщо функція приймає 2 параметри, вони повинні бути id та available.
+// Функція повинна повертати масив книг за автором, чи за доступністю, чи за id та доступністю.
+// Для реалізації функції створіть три сигнатури з різними типами параметрів
+// та реалізацію з рест параметром типу any[] або unknown[] або [string | boolean] | [number, boolean].
+// Функція повинна аналізувати кількість і типи параметрів за допомогою оператора typeof і формувати результуючий масив з масиву,
+// отриманого за допомогою функції getAllBooks(), аналізуючи властивості: book.author, book.available, book.id.
+// -------------------------------------------------------------------------------------------------
+
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(id: number, available: boolean): string[];
+function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
+    const books = getAllBooks();
+
+    if (args.length === 1) {
+        const [arg] = args;
+
+        if (typeof arg === 'string') {
+            return books.filter(book => book.author === arg)
+                .map(book => book.title);
+
+        } else if (typeof arg === 'boolean') {
+            return books.filter(book => book.available === arg)
+                .map(book => book.author);
+        }
+
+    } else if (args.length === 2) {
+        const [id, available] = args;
+
+        if (typeof id === 'number' && typeof available === 'boolean') {
+            return books.filter(book => book.id === id && book.available === available)
+                .map(book => book.author);
+        }
+    }
+}
+console.log(getTitles(1, true)); // ['Evan Burchard']0: "Evan Burchard"length: 1[[Prototype]]: Array(0)
