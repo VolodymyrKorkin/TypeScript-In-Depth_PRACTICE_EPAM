@@ -370,7 +370,7 @@ function getBookByID(id: number): Book {
 // -------------------------------------------------------------------------------------------------
 
 function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
-    console.log(`Customer: ${customer}`);
+    // console.log(`Customer: ${customer}`);
 
     return bookIDs
         .map(id => getBookByID(id))
@@ -440,4 +440,14 @@ function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
         }
     }
 }
-console.log(getTitles(1, true)); // ['Evan Burchard']0: "Evan Burchard"length: 1[[Prototype]]: Array(0)
+// console.log(getTitles(1, true)); // ['Evan Burchard']0: "Evan Burchard"length: 1[[Prototype]]: Array(0)
+
+
+// 03.03.03 ----------------------------------------------------------------------
+// 3.	Оголосіть змінну checkedOutBooks та викличте функцію getTitles(false).
+// Виведіть результат у консоль.
+// -------------------------------------------------------------------------------
+
+const checkedOutBooks = getTitles(false);
+// console.log(checkedOutBooks); // ['Liang Yuxian Eugene']0: "Liang Yuxian Eugene"length: 1[[Prototype]]: Array(0)
+
