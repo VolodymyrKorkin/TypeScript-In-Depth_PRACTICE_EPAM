@@ -588,4 +588,20 @@ const myBook = {
 // Жодних помилок при цьому не повинно з'являтися.
 // ------------------------------------------------------------------------------------------
 
-printBook(myBook); // Colors, Backgrounds, and Gradients by Eric A. Meyer
+// printBook(myBook); // Colors, Backgrounds, and Gradients by Eric A. Meyer
+
+
+// 04.01.07 ---------------------------------------------------------------------------------
+// 7.	Додайте до інтерфейсу Book властивість pages: number.
+// Ви отримаєте помилку у функції getAllBooks().
+// Щоб помилка не виникала, зробіть властивість необов'язковою.
+// ------------------------------------------------------------------------------------------
+
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+    pages?: number;
+}
