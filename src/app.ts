@@ -557,3 +557,28 @@ function getBookByID2(id: Book['id']): Book | undefined {
 function printBook(book: Book): void {
     console.log(`${book.title} by ${book.author}`);
 }
+
+
+// 04.01.05 ---------------------------------------------------------------------------------
+// 5.	Оголосіть змінну myBook і надайте їй наступний об'єкт
+// {
+//     id: 5,
+//     title: 'Colors, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     year: 2015,
+//     copies: 3
+// }
+// ------------------------------------------------------------------------------------------
+
+const myBook = {
+    id: 5,
+    title: 'Colors, Backgrounds, and Gradients',
+    author: 'Eric A. Meyer',
+    available: true,
+    category: Category.CSS,
+    year: 2015,
+    copies: 3
+};
+
