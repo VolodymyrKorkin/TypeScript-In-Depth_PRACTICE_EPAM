@@ -205,13 +205,14 @@ function calcTotalPages(): void {
 // 1.	Додайте const assertions (<const>) для масиву книг та масиву,
 // який надає інформацію про сторінки книг у бібліотеках міста.
 // -------------------------------------------------------------------------------------------------
-type Book = {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-};
+
+// type Book = {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+// };
 
 function getAllBooks2(): readonly Book[] {
     const books2 = <const> [
@@ -488,3 +489,32 @@ function bookTitleTransform(title: any): string {
 
 console.log(bookTitleTransform('Learn TypeScript')); // tpircSepyT nraeL
 console.log(bookTitleTransform(123)); // Uncaught Error: value should have been a string
+
+
+
+// **************************************************************************************************
+// 04. Interfaces
+// **************************************************************************************************
+
+
+// ==================================================================================================
+// Task 04.01. Defining an Interface
+// ==================================================================================================
+
+
+// 04.01.01 ---------------------------------------------------------------------------------
+// 1.	Оголосіть інтерфейс Book, який включає такі поля:
+//      a.	id - число
+//      b.	title - рядок
+//      c.	author - рядок
+//      d.	available - логічний
+//      e.	category – категорія
+// ------------------------------------------------------------------------------------------
+
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+}
