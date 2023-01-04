@@ -734,3 +734,14 @@ interface Librarian extends Person {
     department: string;
     assistCustomer: (custName: string, bookTitle: string) => void;
 }
+
+
+// 04.03.04 ---------------------------------------------------------------------------------
+// 4.	Оголосіть змінну favoriteAuthor, використовуючи інтерфейс Author, задайте значення у вигляді літерала об'єкта.
+// ------------------------------------------------------------------------------------------
+
+const favoriteAuthor: Author = {
+    name: 'Anna',
+    email: 'Anna@example.com',
+    numBooksPublished: 2
+};
