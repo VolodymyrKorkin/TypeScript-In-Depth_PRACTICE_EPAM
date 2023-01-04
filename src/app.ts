@@ -547,3 +547,13 @@ function getBookByID2(id: Book['id']): Book | undefined {
 
     return books.find(book => book.id === id);
 }
+
+
+// 04.01.04 ---------------------------------------------------------------------------------
+// 4.	Створіть функцію printBook(), яка на вхід приймає книгу та виводить у консоль фразу
+// book.title + by + book.author. Використайте інтерфейс Book для типу параметра.
+// ------------------------------------------------------------------------------------------
+
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
