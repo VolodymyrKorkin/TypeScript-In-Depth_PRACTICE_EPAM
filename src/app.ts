@@ -722,3 +722,15 @@ interface Person {
 interface Author extends Person {
     numBooksPublished: number;
 }
+
+
+// 04.03.03 ---------------------------------------------------------------------------------
+// 3.	Оголосіть інтерфейс Librarian на основі інтерфейсу Person, який розширює цей інтерфейс двома властивостями:
+//      a.	Рядкова властивість department
+//      b.	Функція assistCustomer, яка приймає два рядкові параметри custName і bookTitle і нічого не повертає.
+// ------------------------------------------------------------------------------------------
+
+interface Librarian extends Person {
+    department: string;
+    assistCustomer: (custName: string, bookTitle: string) => void;
+}
