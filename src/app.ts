@@ -478,5 +478,13 @@ function assertStringValue(data: any): asserts data is string {
 
 function bookTitleTransform(title: any): string {
     assertStringValue(title);
-    return [...title].reverse().join();
+    return [...title].reverse().join('');
 }
+
+
+// 03.04.03 ---------------------------------------------------------------------------------
+// 3.	Викличте функцію bookTitleTransform() двічі і передайте їй рядкове та числове значення.
+// ------------------------------------------------------------------------------------------
+
+console.log(bookTitleTransform('Learn TypeScript')); // tpircSepyT nraeL
+console.log(bookTitleTransform(123)); // Uncaught Error: value should have been a string
