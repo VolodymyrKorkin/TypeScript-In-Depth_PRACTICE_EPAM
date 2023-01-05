@@ -1093,3 +1093,12 @@ class Encyclopedia extends ReferenceItem {
         super(id, title, year);
     }
 }
+
+
+// 05.02.02 ---------------------------------------------------------------------------------
+// 2.	Оголосіть змінну refBook та створіть об'єкт Encyclopedia. Викличте метод printItem();
+// ------------------------------------------------------------------------------------------
+
+const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+refBook.printItem();
+console.log(refBook);
