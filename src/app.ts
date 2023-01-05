@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-redeclare */
 
 // Greeting (check if webpack works)
@@ -883,6 +884,44 @@ function getProperty(book: Book, prop: BookProperties): any {
 // через параметри конструктора (title - public, year - private).
 // ------------------------------------------------------------------------------------------
 
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating a new ReferenceItem...');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+
+//     constructor(
+//         public title: string,
+//         private year: number
+//     ) {
+//         console.log('Creating a new ReferenceItem...');
+//     }
+
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+// }
+
+// const ref = new ReferenceItem('Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem(); // Learn TypeScript was published in 2022
+
+
+
+// 05.01.04 ---------------------------------------------------------------------------------
+// 4.	Створіть приватну (“soft private”) рядкову властивість _publisher.
+//      a.	Додайте гетер publisher, який перетворює властивість
+//  _publisher у верхній регістр і повертає його.
+//      b.	Додайте сеттер publisher, який приймає рядковий параметр
+//  newPublisher і встановлює значення властивості _publisher в значення цього параметра.
+//      c.	Проініціалізуйте властивість ref.publisher будь-яким рядковим значенням
+//  і виведіть його в консоль. Результат має бути у верхньому регістрі.
+// ------------------------------------------------------------------------------------------
+
 class ReferenceItem {
     // title: string;
     // year: number;
@@ -892,6 +931,16 @@ class ReferenceItem {
     //     this.title = newTitle;
     //     this.year = newYear;
     // }
+
+    private _publisher: string;
+
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
+    }
 
     constructor(
         public title: string,
@@ -908,3 +957,5 @@ class ReferenceItem {
 const ref = new ReferenceItem('Learn TypeScript', 2022);
 console.log(ref);
 ref.printItem(); // Learn TypeScript was published in 2022
+ref.publisher = 'abc group';
+console.log(ref.publisher); // ABC GROUP
