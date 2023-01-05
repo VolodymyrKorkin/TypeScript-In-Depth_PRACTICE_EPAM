@@ -1073,3 +1073,23 @@ ref.printItem(); // Learn TypeScript was published in 2022
 ref.publisher = 'abc group';
 console.log(ref.publisher); // ABC GROUP
 console.log(ref.getID());
+
+
+// ==================================================================================================
+// Task 05.02. Extending Classes
+// ==================================================================================================
+
+// 05.02.01 ---------------------------------------------------------------------------------
+// 1.	Створіть клас Encyclopedia як спадкоємця класу ReferenceItem. Додайте одну додаткову числову публічну властивість edition. Використайте параметри конструктора.
+// ------------------------------------------------------------------------------------------
+
+class Encyclopedia extends ReferenceItem {
+    constructor(
+        id: number,
+        title: string,
+        year: number,
+        public edition: number
+    ) {
+        super(id, title, year);
+    }
+}
