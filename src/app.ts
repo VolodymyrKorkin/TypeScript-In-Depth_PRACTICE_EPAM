@@ -753,12 +753,12 @@ const favoriteAuthor: Author = {
 // задайте значення у вигляді літерала об'єкта.
 // ------------------------------------------------------------------------------------------
 
-const favoriteLibrarian: Librarian = {
-    name: 'Boris',
-    email: 'boris@example.com',
-    department: 'Classical Literature',
-    assistCustomer: null
-};
+// const favoriteLibrarian: Librarian = {
+//     name: 'Boris',
+//     email: 'boris@example.com',
+//     department: 'Classical Literature',
+//     assistCustomer: null
+// };
 
 
 // ==================================================================================================
@@ -1214,3 +1214,34 @@ class Encyclopedia extends ReferenceItem {
 // refBook.printItem();
 // console.log(refBook);
 // refBook.printCitation();
+
+
+// ==================================================================================================
+// Task 05.04. Interfaces for Class Types
+// ==================================================================================================
+
+
+// ------------------------------------------------------------------------------------------
+// 1.	Створіть клас UniversityLibrarian, який реалізує інтерфейс Librarian та реалізуйте всі необхідні властивості. Метод assistCustomer повинен виводити в консоль рядок `${this.name} is assisting ${custName} with book ${bookTitle}`.
+// 2.	Оголосіть змінну favoriteLibrarian за допомогою інтерфейсу Librarian і проініціалізуйте її за допомогою об'єкта, створеного класом UniversityLibrarian(). Жодних помилок при цьому не повинно виникати. Проініціалізуйте властивість name та викличте метод assistCustomer().
+// ------------------------------------------------------------------------------------------
+
+// interface A {
+//     a: number;
+// }
+class UniversityLibrarian implements Librarian {
+    name: string;
+    email: string;
+    department: string;
+
+    // a: number;
+
+    assistCustomer(custName: string, bookTitle: string): void {
+        console.log(`${this.name} is assisting ${custName} with book ${bookTitle}`);
+    }
+}
+
+const favoriteLibrarian: Librarian /* & A */ = new UniversityLibrarian();
+favoriteLibrarian.name = 'Anna';
+favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
+// favoriteLibrarian.a = 2;
