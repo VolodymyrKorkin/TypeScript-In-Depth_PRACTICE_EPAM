@@ -1022,7 +1022,128 @@ function getProperty(book: Book, prop: BookProperties): any {
 // Внесіть зміни до методу printItem() – виводьте значення цієї статичної властивості у консоль.
 // ------------------------------------------------------------------------------------------
 
-class ReferenceItem {
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating a new ReferenceItem...');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+
+//     #id: number;
+
+//     private _publisher: string;
+
+//     get publisher(): string {
+//         return this._publisher.toUpperCase();
+//     }
+
+//     set publisher(newPublisher: string) {
+//         this._publisher = newPublisher;
+//     }
+
+//     static department: string = 'Research Dep.';
+
+//     constructor(
+//         id: number,
+//         public title: string,
+//         protected year: number
+//     ) {
+//         console.log('Creating a new ReferenceItem...');
+//         this.#id = id;
+//     }
+
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+
+//         console.log(ReferenceItem.department); // v1
+//         console.log(Object.getPrototypeOf(this).constructor.department); // v2
+//     }
+
+//     getID(): number {
+//         return this.#id;
+//     }
+// }
+
+// const ref = new ReferenceItem(1, 'Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem(); // Learn TypeScript was published in 2022
+// ref.publisher = 'abc group';
+// console.log(ref.publisher); // ABC GROUP
+// console.log(ref.getID());
+
+
+// ==================================================================================================
+// Task 05.02. Extending Classes
+// ==================================================================================================
+
+// 05.02.01 ---------------------------------------------------------------------------------
+// 1.	Створіть клас Encyclopedia як спадкоємця класу ReferenceItem. Додайте одну додаткову числову публічну властивість edition. Використайте параметри конструктора.
+// ------------------------------------------------------------------------------------------
+
+// class Encyclopedia extends ReferenceItem {
+//     constructor(
+//         id: number,
+//         title: string,
+//         year: number,
+//         public edition: number
+//     ) {
+//         super(id, title, year);
+//     }
+// }
+
+
+// 05.02.02 ---------------------------------------------------------------------------------
+// 2.	Оголосіть змінну refBook та створіть об'єкт Encyclopedia. Викличте метод printItem();
+// ------------------------------------------------------------------------------------------
+
+// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+// console.log(refBook);
+
+
+// 05.02.03 ---------------------------------------------------------------------------------
+// 3.	Перевизначте метод printItem(). Додайте ключове слово override. Нехай він робить те, що робив
+// та додатково виводить рядок у консоль «Edition: edition (year)». Ви отримаєте помилку, що властивість year недоступна.
+// Щоб властивість стала доступна, змініть модифікатор доступу в класі ReferenceItem з private на protected.
+// ------------------------------------------------------------------------------------------
+
+// class Encyclopedia extends ReferenceItem {
+//     constructor(
+//         id: number,
+//         title: string,
+//         year: number,
+//         public edition: number
+//     ) {
+//         super(id, title, year);
+//     }
+
+//     override printItem(): void {
+//         super.printItem();
+//         console.log(`Edition: ${this.edition} (${this.year})`);
+//     }
+// }
+
+// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+// console.log(refBook);
+
+
+// ==================================================================================================
+// Task 05.03. Creating Abstract Classes
+// ==================================================================================================
+
+
+// ------------------------------------------------------------------------------------------
+// 1.	Внесіть зміни до класу ReferenceItem – зробіть його абстрактним.
+// 2.	Додайте абстрактний метод printCitation(), який не приймає параметрів і не повертає значення. Цей метод має бути без реалізації. Після цього Ви отримаєте помилку в класі Encyclopedia, яка повідомлятиме, що не реалізовано абстрактний метод.
+// 3.	Додайте реалізацію методу printCitation до класу Encyclopedia. Метод повинен виводити в консоль рядок "title - year".
+// 4.	Оголосіть змінну refBook та проініціалізуйте її об'єктом Encyclopedia. Викличте метод printCitation();
+// ------------------------------------------------------------------------------------------
+
+abstract class ReferenceItem {
     // title: string;
     // year: number;
 
@@ -1065,50 +1186,9 @@ class ReferenceItem {
     getID(): number {
         return this.#id;
     }
+
+    abstract printCitation(): void;
 }
-
-const ref = new ReferenceItem(1, 'Learn TypeScript', 2022);
-console.log(ref);
-ref.printItem(); // Learn TypeScript was published in 2022
-ref.publisher = 'abc group';
-console.log(ref.publisher); // ABC GROUP
-console.log(ref.getID());
-
-
-// ==================================================================================================
-// Task 05.02. Extending Classes
-// ==================================================================================================
-
-// 05.02.01 ---------------------------------------------------------------------------------
-// 1.	Створіть клас Encyclopedia як спадкоємця класу ReferenceItem. Додайте одну додаткову числову публічну властивість edition. Використайте параметри конструктора.
-// ------------------------------------------------------------------------------------------
-
-// class Encyclopedia extends ReferenceItem {
-//     constructor(
-//         id: number,
-//         title: string,
-//         year: number,
-//         public edition: number
-//     ) {
-//         super(id, title, year);
-//     }
-// }
-
-
-// 05.02.02 ---------------------------------------------------------------------------------
-// 2.	Оголосіть змінну refBook та створіть об'єкт Encyclopedia. Викличте метод printItem();
-// ------------------------------------------------------------------------------------------
-
-// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
-// refBook.printItem();
-// console.log(refBook);
-
-
-// 05.02.03 ---------------------------------------------------------------------------------
-// 3.	Перевизначте метод printItem(). Додайте ключове слово override. Нехай він робить те, що робив
-// та додатково виводить рядок у консоль «Edition: edition (year)». Ви отримаєте помилку, що властивість year недоступна.
-// Щоб властивість стала доступна, змініть модифікатор доступу в класі ReferenceItem з private на protected.
-// ------------------------------------------------------------------------------------------
 
 class Encyclopedia extends ReferenceItem {
     constructor(
@@ -1124,8 +1204,13 @@ class Encyclopedia extends ReferenceItem {
         super.printItem();
         console.log(`Edition: ${this.edition} (${this.year})`);
     }
+
+    printCitation(): void {
+        console.log(`${this.title} - ${this.year}`);
+    }
 }
 
-const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
-refBook.printItem();
-console.log(refBook);
+// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+// console.log(refBook);
+// refBook.printCitation();
