@@ -543,7 +543,7 @@ function getAllBooks3(): readonly Book[] {
 // Можливо, доведеться додати об'єднання з типом undefined, оскільки метод find, якщо не знайде елемент, поверне undefined.
 // ------------------------------------------------------------------------------------------
 
-function getBookByID2(id: Book['id']): Book | undefined {
+function getBookByID2(id: Book['id']): BookOrUndefined {
     const books = getAllBooks();
 
     return books.find(book => book.id === id);
@@ -1245,3 +1245,42 @@ const favoriteLibrarian: Librarian /* & A */ = new UniversityLibrarian();
 favoriteLibrarian.name = 'Anna';
 favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
 // favoriteLibrarian.a = 2;
+
+
+// ==================================================================================================
+// Task 05.05. Intersection and Union Types
+// ==================================================================================================
+
+
+// ------------------------------------------------------------------------------------------
+// 1.	Створіть тип PersonBook. Використовуйте для цього інтерфейси Person, Book та перетин типів.
+// 2.	Оголосіть змінну з типом PersonBook, проініціалізуйте її літералом, виведіть її в консоль.
+// 3.	Створіть тип BookOrUndefined. Використовуйте для цього об'єднання інтерфейсу Book та undefined.
+// 4.	Замініть тип значення, що повертається у функції getBookByID() на BookOrUndefined.
+// 5.	Створіть функцію setDefaultConfig(), яка приймає об'єкт options. Тип для об'єкта TOptions опишіть інтерфейсом з необов'язковими числовими властивостями duration і speed. Функція повинна встановлювати значення властивостей за замовчуванням та деякі значення, якщо вони не задані, використовуючи логічний оператор налового присвоєння та повертати об'єкт.
+// ------------------------------------------------------------------------------------------
+
+type PersonBook = Person & Book;
+const PersonBook: PersonBook = {
+    name: 'Anna',
+    author: 'Anna',
+    available: false,
+    category: Category.Angular,
+    email: 'anna@example.com',
+    id: 1,
+    title: 'Unknown',
+};
+
+type BookOrUndefined = Book | undefined;
+
+interface TOptions {
+    duration?: number;
+    speed?: number;
+}
+
+function setDefaultConfig(options: TOptions) {
+    options.duration ??= 100;
+    options.speed ??= 60;
+
+    return options;
+}
