@@ -922,6 +922,53 @@ function getProperty(book: Book, prop: BookProperties): any {
 //  і виведіть його в консоль. Результат має бути у верхньому регістрі.
 // ------------------------------------------------------------------------------------------
 
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating a new ReferenceItem...');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+
+//     private _publisher: string;
+
+//     get publisher(): string {
+//         return this._publisher.toUpperCase();
+//     }
+
+//     set publisher(newPublisher: string) {
+//         this._publisher = newPublisher;
+//     }
+
+//     constructor(
+//         public title: string,
+//         private year: number
+//     ) {
+//         console.log('Creating a new ReferenceItem...');
+//     }
+
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+// }
+
+// const ref = new ReferenceItem('Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem(); // Learn TypeScript was published in 2022
+// ref.publisher = 'abc group';
+// console.log(ref.publisher); // ABC GROUP
+
+
+// 05.01.05 ---------------------------------------------------------------------------------
+// 5.	Створіть приватну (“hard private”) числову властивість id.
+//      a.	Внесіть зміни до конструктора для ініціалізації цієї властивості.
+//      b.	Додайте метод getID(), який повинен повертати значення властивості id.
+//      c.	Виведіть об'єкт у консоль.
+//      d.	Викличте метод getID().
+// ------------------------------------------------------------------------------------------
+
 class ReferenceItem {
     // title: string;
     // year: number;
@@ -931,6 +978,8 @@ class ReferenceItem {
     //     this.title = newTitle;
     //     this.year = newYear;
     // }
+
+    #id: number;
 
     private _publisher: string;
 
@@ -943,19 +992,26 @@ class ReferenceItem {
     }
 
     constructor(
+        id: number,
         public title: string,
         private year: number
     ) {
         console.log('Creating a new ReferenceItem...');
+        this.#id = id;
     }
 
     printItem(): void {
         console.log(`${this.title} was published in ${this.year}`);
     }
+
+    getID(): number {
+        return this.#id;
+    }
 }
 
-const ref = new ReferenceItem('Learn TypeScript', 2022);
+const ref = new ReferenceItem(1, 'Learn TypeScript', 2022);
 console.log(ref);
 ref.printItem(); // Learn TypeScript was published in 2022
 ref.publisher = 'abc group';
 console.log(ref.publisher); // ABC GROUP
+console.log(ref.getID());
