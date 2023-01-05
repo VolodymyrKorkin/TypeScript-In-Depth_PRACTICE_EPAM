@@ -1049,7 +1049,7 @@ class ReferenceItem {
     constructor(
         id: number,
         public title: string,
-        private year: number
+        protected year: number
     ) {
         console.log('Creating a new ReferenceItem...');
         this.#id = id;
@@ -1083,6 +1083,33 @@ console.log(ref.getID());
 // 1.	Створіть клас Encyclopedia як спадкоємця класу ReferenceItem. Додайте одну додаткову числову публічну властивість edition. Використайте параметри конструктора.
 // ------------------------------------------------------------------------------------------
 
+// class Encyclopedia extends ReferenceItem {
+//     constructor(
+//         id: number,
+//         title: string,
+//         year: number,
+//         public edition: number
+//     ) {
+//         super(id, title, year);
+//     }
+// }
+
+
+// 05.02.02 ---------------------------------------------------------------------------------
+// 2.	Оголосіть змінну refBook та створіть об'єкт Encyclopedia. Викличте метод printItem();
+// ------------------------------------------------------------------------------------------
+
+// const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+// console.log(refBook);
+
+
+// 05.02.03 ---------------------------------------------------------------------------------
+// 3.	Перевизначте метод printItem(). Додайте ключове слово override. Нехай він робить те, що робив
+// та додатково виводить рядок у консоль «Edition: edition (year)». Ви отримаєте помилку, що властивість year недоступна.
+// Щоб властивість стала доступна, змініть модифікатор доступу в класі ReferenceItem з private на protected.
+// ------------------------------------------------------------------------------------------
+
 class Encyclopedia extends ReferenceItem {
     constructor(
         id: number,
@@ -1092,12 +1119,12 @@ class Encyclopedia extends ReferenceItem {
     ) {
         super(id, title, year);
     }
+
+    override printItem(): void {
+        super.printItem();
+        console.log(`Edition: ${this.edition} (${this.year})`);
+    }
 }
-
-
-// 05.02.02 ---------------------------------------------------------------------------------
-// 2.	Оголосіть змінну refBook та створіть об'єкт Encyclopedia. Викличте метод printItem();
-// ------------------------------------------------------------------------------------------
 
 const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
 refBook.printItem();
