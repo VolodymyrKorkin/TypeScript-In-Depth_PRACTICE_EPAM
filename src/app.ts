@@ -852,26 +852,58 @@ function getProperty(book: Book, prop: BookProperties): any {
 //      d.	Метод printItem() без параметрів, що нічого не повертає. Цей метод повинен  виводити рядок "title was published in year" в консоль.
 // ------------------------------------------------------------------------------------------
 
-class ReferenceItem {
-    title: string;
-    year: number;
+// class ReferenceItem {
+//     title: string;
+//     year: number;
 
-    constructor(newTitle: string, newYear: number) {
-        console.log('Creating a new ReferenceItem...');
-        this.title = newTitle;
-        this.year = newYear;
-    }
+//     constructor(newTitle: string, newYear: number) {
+//         console.log('Creating a new ReferenceItem...');
+//         this.title = newTitle;
+//         this.year = newYear;
+//     }
 
-    printItem(): void {
-        console.log(`${this.title} was published in ${this.year}`);
-    }
-}
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+// }
 
 
 // 05.01.02 ---------------------------------------------------------------------------------
 // 2.	Оголосіть змінну ref та проініціалізуйте її об'єктом ReferenceItem.
 // Передайте значення для параметрів конструктора. Викличте метод printItem().
 // ------------------------------------------------------------------------------------------
+
+// const ref = new ReferenceItem('Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem(); // Learn TypeScript was published in 2022
+
+
+// 05.01.03 ---------------------------------------------------------------------------------
+// 3.	Закоментуйте конструктор, властивості title та year та реалізуйте створення властивостей
+// через параметри конструктора (title - public, year - private).
+// ------------------------------------------------------------------------------------------
+
+class ReferenceItem {
+    // title: string;
+    // year: number;
+
+    // constructor(newTitle: string, newYear: number) {
+    //     console.log('Creating a new ReferenceItem...');
+    //     this.title = newTitle;
+    //     this.year = newYear;
+    // }
+
+    constructor(
+        public title: string,
+        private year: number
+    ) {
+        console.log('Creating a new ReferenceItem...');
+    }
+
+    printItem(): void {
+        console.log(`${this.title} was published in ${this.year}`);
+    }
+}
 
 const ref = new ReferenceItem('Learn TypeScript', 2022);
 console.log(ref);
