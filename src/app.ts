@@ -866,3 +866,13 @@ class ReferenceItem {
         console.log(`${this.title} was published in ${this.year}`);
     }
 }
+
+
+// 05.01.02 ---------------------------------------------------------------------------------
+// 2.	Оголосіть змінну ref та проініціалізуйте її об'єктом ReferenceItem.
+// Передайте значення для параметрів конструктора. Викличте метод printItem().
+// ------------------------------------------------------------------------------------------
+
+const ref = new ReferenceItem('Learn TypeScript', 2022);
+console.log(ref);
+ref.printItem(); // Learn TypeScript was published in 2022
