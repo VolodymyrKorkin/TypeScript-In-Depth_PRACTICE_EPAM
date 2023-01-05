@@ -969,6 +969,59 @@ function getProperty(book: Book, prop: BookProperties): any {
 //      d.	Викличте метод getID().
 // ------------------------------------------------------------------------------------------
 
+// class ReferenceItem {
+//     // title: string;
+//     // year: number;
+
+//     // constructor(newTitle: string, newYear: number) {
+//     //     console.log('Creating a new ReferenceItem...');
+//     //     this.title = newTitle;
+//     //     this.year = newYear;
+//     // }
+
+//     #id: number;
+
+//     private _publisher: string;
+
+//     get publisher(): string {
+//         return this._publisher.toUpperCase();
+//     }
+
+//     set publisher(newPublisher: string) {
+//         this._publisher = newPublisher;
+//     }
+
+//     constructor(
+//         id: number,
+//         public title: string,
+//         private year: number
+//     ) {
+//         console.log('Creating a new ReferenceItem...');
+//         this.#id = id;
+//     }
+
+//     printItem(): void {
+//         console.log(`${this.title} was published in ${this.year}`);
+//     }
+
+//     getID(): number {
+//         return this.#id;
+//     }
+// }
+
+// const ref = new ReferenceItem(1, 'Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem(); // Learn TypeScript was published in 2022
+// ref.publisher = 'abc group';
+// console.log(ref.publisher); // ABC GROUP
+// console.log(ref.getID());
+
+
+// 05.01.06 ---------------------------------------------------------------------------------
+// 6.	Створіть статичну рядкову властивість department і проініціалізуйте її будь-яким значенням за замовчуванням.
+// Внесіть зміни до методу printItem() – виводьте значення цієї статичної властивості у консоль.
+// ------------------------------------------------------------------------------------------
+
 class ReferenceItem {
     // title: string;
     // year: number;
@@ -991,6 +1044,8 @@ class ReferenceItem {
         this._publisher = newPublisher;
     }
 
+    static department: string = 'Research Dep.';
+
     constructor(
         id: number,
         public title: string,
@@ -1002,6 +1057,9 @@ class ReferenceItem {
 
     printItem(): void {
         console.log(`${this.title} was published in ${this.year}`);
+
+        console.log(ReferenceItem.department); // v1
+        console.log(Object.getPrototypeOf(this).constructor.department); // v2
     }
 
     getID(): number {
