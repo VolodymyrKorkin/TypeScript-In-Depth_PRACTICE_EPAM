@@ -1,5 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-redeclare */
+
+import { ReferenceItem, UniversityLibrarian } from './classes';
+import { createCustomerID, getTitles, сheckoutBooks } from './functions';
+import { Author, Book, Librarian, Logger } from './interfaces';
 
 // Greeting (check if webpack works)
 showHello('greeting', 'TypeScript');
@@ -69,14 +72,6 @@ function showHello(divName: string, name: string) {
 //    b.	назву першої доступної книги
 // -------------------------------------------------------------------------------------------------
 
-function logFirstAvailable(books: Books): void {
-    console.log(`Number of books: ${books.length}`);
-
-    // const title = books.find(book => book.available === true)?.title;
-    // Деструктуризація
-    const title = books.find( ({available}) => available )?.title;
-    console.log(`First available book: ${title}`);
-}
 
 // 02.01.03 ----------------------------------------------------------------------------------------
 // 3.	Запустіть функцію logFirstAvailable()
@@ -121,28 +116,12 @@ function getAllBooks(): Books {
 // 6.	Реалізуйте функцію getBookTitlesByCategory(), яка на вхід отримує категорію та повертає масив найменувань книг, що належать зазначеній категорії.
 // -------------------------------------------------------------------------------------------------
 
-function getBookTitlesByCategory(inputCategory: Category): string[] {
-    const books = getAllBooks();
-
-    const titles = books
-        .filter(book => book.category === inputCategory)
-        .map(book => book.title);
-    return titles;
-
-    // Деструктуризация
-    // return books
-    //     .filter( ({category}) => category === inputCategory )
-    //     .map( ({ title }) => title);
-}
 
 // 02.01.07 ----------------------------------------------------------------------------------------
 // 7.	Реалізуйте функцію logBookTitles(), яка приймає масив рядків та виводить його в консоль.
 // Викличте функції getBookTitlesByCategory() та logBookTitles().
 // -------------------------------------------------------------------------------------------------
 
-function logBookTitles(titles: Array<string>): void {
-    titles.forEach(title => console.log(title));
-}
 // logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 
 
@@ -164,13 +143,6 @@ function logBookTitles(titles: Array<string>): void {
 // 9.	Внесіть зміни до типу, що повертається функцією getBookAuthorByIndex() – додайте мітки: title, author для типу tuple
 // -------------------------------------------------------------------------------------------------
 
-function getBookAuthorByIndex(index: number): [title: string, author: string] {
-    const books = getAllBooks();
-
-    const { title, author } = books[index];
-
-    return [title, author];
-}
 // console.log(getBookAuthorByIndex(0));
 
 // 02.01.10 ----------------------------------------------------------------------------------------
@@ -183,19 +155,6 @@ function getBookAuthorByIndex(index: number): [title: string, author: string] {
 // Для підрахунків використовуйте тип bigint
 // -------------------------------------------------------------------------------------------------
 
-function calcTotalPages(): void {
-    const data = [
-        { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
-        { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
-        { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }
-    ];
-
-    const result = data.reduce((acc: bigint, obj ) => {
-        return acc + BigInt(obj.books) * BigInt(obj.avgPagesPerBook);
-    }, 0n);
-
-    console.log(result);
-}
 
 
 // ==================================================================================================
@@ -207,33 +166,11 @@ function calcTotalPages(): void {
 // який надає інформацію про сторінки книг у бібліотеках міста.
 // -------------------------------------------------------------------------------------------------
 
-// type Book = {
-//     id: number;
-//     title: string;
-//     author: string;
-//     available: boolean;
-//     category: Category;
-// };
 
-function getAllBooks2(): readonly Book[] {
-    const books2 = <const> [
-        { id: 1, title: 'Refactoring JavaScript', category: Category.JavaScript, author: 'Evan Burchard', available: true},
-        { id: 2, title: 'JavaScript Testing', category: Category.JavaScript, author: 'Liang Yuxian Eugene', available: false },
-        { id: 3, title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true },
-        { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', category: Category.JavaScript, author: 'Andrea Chiarelli', available: true }
-    ];
-    return books2;
-}
 
 // 02.02.02 ----------------------------------------------------------------------------------------
 // 2.	Додайте модифікатор readonly для параметра функції logFirstAvailable()
 // -------------------------------------------------------------------------------------------------
-function logFirstAvailable2(books: readonly Book[]): void {
-    console.log(`Number of books: ${books.length}`);
-
-    const title = books.find(book => book.available === true)?.title;
-    console.log(`First available book: ${title}`);
-}
 
 
 // **************************************************************************************************
@@ -251,16 +188,13 @@ function logFirstAvailable2(books: readonly Book[]): void {
 // та його ідентифікатор (id: number) та повертає конкатенацію цих значень у вигляді рядка.
 // -------------------------------------------------------------------------------------------------
 
-function createCustomerID(name: string, id: number): string {
-    return `${id}/${name}`;
-}
 
 // 03.01.02 -------------------------------------------------------------------------------------------
 // 2.	Об’явіть змінну myID рядкового типу та викличте функцію зі значеннями Ann, 10.
 // Отримане значення виведіть у консоль.
 // -------------------------------------------------------------------------------------------------
 
-const myID: string = createCustomerID('Ann', 10);
+// const myID: string = createCustomerID('Ann', 10);
 // console.log(myID); // 10/Ann
 
 // 03.01.03 -------------------------------------------------------------------------------------------
@@ -300,17 +234,6 @@ idGenerator = createCustomerID;
 // Викличте цю функцію з одним, двома та трьома аргументами.
 // -------------------------------------------------------------------------------------------------
 
-function createCustomer(name: string, age?: number, city?: string): void {
-    console.log(`Customer name: ${name}`);
-
-    if (age) {
-        console.log(`Customer age: ${age}`);
-    }
-
-    if (city) {
-        console.log(`Customer city: ${city}`);
-    }
-}
 
 // createCustomer('Anna');
 // createCustomer('Anna', 30);
@@ -323,14 +246,6 @@ function createCustomer(name: string, age?: number, city?: string): void {
 // Викличте цю функцію без аргументів.
 // -------------------------------------------------------------------------------------------------
 
-function getBookTitlesByCategory2(inputCategory: Category = Category.JavaScript): string[] {
-    const books = getAllBooks();
-
-    const titles = books
-        .filter(book => book.category === inputCategory)
-        .map(book => book.title);
-    return titles;
-}
 
 // console.log(getBookTitlesByCategory2());
 
@@ -340,12 +255,6 @@ function getBookTitlesByCategory2(inputCategory: Category = Category.JavaScript)
 // Викличте цю функцію без аргументів.
 // -------------------------------------------------------------------------------------------------
 
-function logFirstAvailable3(books: readonly Book[] = getAllBooks()): void {
-    console.log(`Number of books: ${books.length}`);
-
-    const title = books.find(book => book.available === true)?.title;
-    console.log(`First available book: ${title}`);
-}
 // logFirstAvailable3();
 
 
@@ -355,11 +264,6 @@ function logFirstAvailable3(books: readonly Book[] = getAllBooks()): void {
 // Викличте функцію та передайте їй 1.
 // -------------------------------------------------------------------------------------------------
 
-function getBookByID(id: number): Book {
-    const books = getAllBooks();
-
-    return books.find(book => book.id === id);
-}
 // console.log(getBookByID(1));
 
 
@@ -371,14 +275,7 @@ function getBookByID(id: number): Book {
 // (available = true). Використовуйте функцію getBookById(). Також функція повинна виводити в консоль ім'я заданого клієнта.
 // -------------------------------------------------------------------------------------------------
 
-function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
-    // console.log(`Customer: ${customer}`);
 
-    return bookIDs
-        .map(id => getBookByID(id))
-        .filter(book => book.available)
-        .map(book => book.title);
-}
 // console.log(сheckoutBooks('NoName Customer', 1, 3, 4));
 // console.log(сheckoutBooks('NoName Customer', ...[1, 3, 4]));
 
@@ -415,33 +312,6 @@ const myBooks = сheckoutBooks('Ann', 1, 2, 4);
 // отриманого за допомогою функції getAllBooks(), аналізуючи властивості: book.author, book.available, book.id.
 // -------------------------------------------------------------------------------------------------
 
-function getTitles(author: string): string[];
-function getTitles(available: boolean): string[];
-function getTitles(id: number, available: boolean): string[];
-function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
-    const books = getAllBooks();
-
-    if (args.length === 1) {
-        const [arg] = args;
-
-        if (typeof arg === 'string') {
-            return books.filter(book => book.author === arg)
-                .map(book => book.title);
-
-        } else if (typeof arg === 'boolean') {
-            return books.filter(book => book.available === arg)
-                .map(book => book.author);
-        }
-
-    } else if (args.length === 2) {
-        const [id, available] = args;
-
-        if (typeof id === 'number' && typeof available === 'boolean') {
-            return books.filter(book => book.id === id && book.available === available)
-                .map(book => book.author);
-        }
-    }
-}
 // console.log(getTitles(1, true)); // ['Evan Burchard']0: "Evan Burchard"length: 1[[Prototype]]: Array(0)
 
 
@@ -464,11 +334,6 @@ const checkedOutBooks = getTitles(false);
 // Якщо ні, то генерувати виняток "value should have been a string".
 // ------------------------------------------------------------------------------------------
 
-function assertStringValue(data: any): asserts data is string {
-    if (typeof data !== 'string') {
-        throw new Error('value should have been a string');
-    }
-}
 
 
 // 03.04.02 ---------------------------------------------------------------------------------
@@ -478,10 +343,6 @@ function assertStringValue(data: any): asserts data is string {
 // і методи масиву reverse() і join().
 // ------------------------------------------------------------------------------------------
 
-function bookTitleTransform(title: any): string {
-    assertStringValue(title);
-    return [...title].reverse().join('');
-}
 
 
 // 03.04.03 ---------------------------------------------------------------------------------
@@ -512,13 +373,13 @@ function bookTitleTransform(title: any): string {
 //      e.	category – категорія
 // ------------------------------------------------------------------------------------------
 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-}
+// interface Book {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+// }
 
 // 04.01.02 ---------------------------------------------------------------------------------
 // 2.	Внесіть зміни в функцію getAllBooks(), вкажіть тип змінної books і тип значення,
@@ -526,15 +387,6 @@ interface Book {
 // Видаліть тимчасово id у книжки та побачите, що з'явиться помилка.
 // ------------------------------------------------------------------------------------------
 
-function getAllBooks3(): readonly Book[] {
-    const books2 = <const> [
-        { id: 1, title: 'Refactoring JavaScript', category: Category.JavaScript, author: 'Evan Burchard', available: true},
-        { id: 2, title: 'JavaScript Testing', category: Category.JavaScript, author: 'Liang Yuxian Eugene', available: false },
-        { id: 3, title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true },
-        { id: 4, title: 'Mastering JavaScript Object-Oriented Programming', category: Category.JavaScript, author: 'Andrea Chiarelli', available: true }
-    ];
-    return books2;
-}
 
 
 // 04.01.03 ---------------------------------------------------------------------------------
@@ -543,11 +395,6 @@ function getAllBooks3(): readonly Book[] {
 // Можливо, доведеться додати об'єднання з типом undefined, оскільки метод find, якщо не знайде елемент, поверне undefined.
 // ------------------------------------------------------------------------------------------
 
-function getBookByID2(id: Book['id']): BookOrUndefined {
-    const books = getAllBooks();
-
-    return books.find(book => book.id === id);
-}
 
 
 // 04.01.04 ---------------------------------------------------------------------------------
@@ -555,9 +402,6 @@ function getBookByID2(id: Book['id']): BookOrUndefined {
 // book.title + by + book.author. Використайте інтерфейс Book для типу параметра.
 // ------------------------------------------------------------------------------------------
 
-function printBook(book: Book): void {
-    console.log(`${book.title} by ${book.author}`);
-}
 
 
 // 04.01.05 ---------------------------------------------------------------------------------
@@ -598,14 +442,14 @@ function printBook(book: Book): void {
 // Щоб помилка не виникала, зробіть властивість необов'язковою.
 // ------------------------------------------------------------------------------------------
 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-    pages?: number;
-}
+// interface Book {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+//     pages?: number;
+// }
 
 
 // 04.01.08 ---------------------------------------------------------------------------------
@@ -632,16 +476,16 @@ interface Book {
 // `Damaged: ${reason}`. Викличте цей метод та передайте рядок 'missing back cover'.
 // ------------------------------------------------------------------------------------------
 
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-    pages?: number;
-    markDamaged?: (reason: string) => void; // property
-    // markDamaged?(reason: string): void; // (method)
-}
+// interface Book {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+//     pages?: number;
+//     markDamaged?: (reason: string) => void; // property
+//     // markDamaged?(reason: string): void; // (method)
+// }
 
 const myBook: Book = {
     id: 5,
@@ -669,26 +513,13 @@ const myBook: Book = {
 // 1.	Оголосіть інтерфейс DamageLogger, який описуватиме тип функції,
 // яка приймає один рядковий параметр і нічого не повертає.
 // ------------------------------------------------------------------------------------------
-interface DamageLogger {
-    (reason: string): void;
-}
 
 
 // 04.02.02 ---------------------------------------------------------------------------------
 // 2.	Внесіть зміни до інтерфейсу Book:
 // використовуйте оголошений інтерфейс DamageLogger для поля markDamaged.
 // ------------------------------------------------------------------------------------------
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-    pages?: number;
-    // markDamaged?: (reason: string) => void; // property
-    // markDamaged?(reason: string): void; // (method)
-    markDamaged?: DamageLogger;
-}
+
 
 
 // 04.02.03 ---------------------------------------------------------------------------------
@@ -696,7 +527,8 @@ interface Book {
 // Створіть функцію, яка задовольняє цьому інтерфейсу, і надайте її оголошеній змінній. Викличте функцію.
 // ------------------------------------------------------------------------------------------
 
-const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+// const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+const logDamage: Logger = (reason: string) => console.log(`Damaged: ${reason}`);
 // logDamage('missing back cover'); // Damaged: missing back cover
 
 
@@ -709,10 +541,6 @@ const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reas
 // 1.	Оголосіть інтерфейс Person, який містить дві рядкові властивості – name і email.
 // ------------------------------------------------------------------------------------------
 
-interface Person {
-    name: string;
-    email: string;
-}
 
 
 // 04.03.02 ---------------------------------------------------------------------------------
@@ -720,9 +548,6 @@ interface Person {
 // числовою властивістю numBooksPublished.
 // ------------------------------------------------------------------------------------------
 
-interface Author extends Person {
-    numBooksPublished: number;
-}
 
 
 // 04.03.03 ---------------------------------------------------------------------------------
@@ -731,10 +556,6 @@ interface Author extends Person {
 //      b.	Функція assistCustomer, яка приймає два рядкові параметри custName і bookTitle і нічого не повертає.
 // ------------------------------------------------------------------------------------------
 
-interface Librarian extends Person {
-    department: string;
-    assistCustomer: (custName: string, bookTitle: string) => void;
-}
 
 
 // 04.03.04 ---------------------------------------------------------------------------------
@@ -806,7 +627,7 @@ const offer: any = {
 // 1.	Оголосіть тип BookProperties, який включає властивості інтерфейсу Book, використовуючи keyof оператор.
 // ------------------------------------------------------------------------------------------
 
-type BookProperties = keyof Book;
+
 
 
 
@@ -816,12 +637,6 @@ type BookProperties = keyof Book;
 //  b.	назву властивості з інтерфейсу Book
 // і повертає значення цієї властивості з переданого об'єкта, якщо це не функція, для функції повертає її ім'я. Використовуйте тип any для значення, що повертається.
 // ------------------------------------------------------------------------------------------
-
-function getProperty(book: Book, prop: BookProperties): any {
-    const value = book[prop];
-
-    return typeof value === 'function' ? value.name : value;
-}
 
 
 
@@ -1143,52 +958,6 @@ function getProperty(book: Book, prop: BookProperties): any {
 // 4.	Оголосіть змінну refBook та проініціалізуйте її об'єктом Encyclopedia. Викличте метод printCitation();
 // ------------------------------------------------------------------------------------------
 
-abstract class ReferenceItem {
-    // title: string;
-    // year: number;
-
-    // constructor(newTitle: string, newYear: number) {
-    //     console.log('Creating a new ReferenceItem...');
-    //     this.title = newTitle;
-    //     this.year = newYear;
-    // }
-
-    #id: number;
-
-    private _publisher: string;
-
-    get publisher(): string {
-        return this._publisher.toUpperCase();
-    }
-
-    set publisher(newPublisher: string) {
-        this._publisher = newPublisher;
-    }
-
-    static department: string = 'Research Dep.';
-
-    constructor(
-        id: number,
-        public title: string,
-        protected year: number
-    ) {
-        console.log('Creating a new ReferenceItem...');
-        this.#id = id;
-    }
-
-    printItem(): void {
-        console.log(`${this.title} was published in ${this.year}`);
-
-        console.log(ReferenceItem.department); // v1
-        console.log(Object.getPrototypeOf(this).constructor.department); // v2
-    }
-
-    getID(): number {
-        return this.#id;
-    }
-
-    abstract printCitation(): void;
-}
 
 class Encyclopedia extends ReferenceItem {
     constructor(
@@ -1229,17 +998,7 @@ class Encyclopedia extends ReferenceItem {
 // interface A {
 //     a: number;
 // }
-class UniversityLibrarian implements Librarian {
-    name: string;
-    email: string;
-    department: string;
 
-    // a: number;
-
-    assistCustomer(custName: string, bookTitle: string): void {
-        console.log(`${this.name} is assisting ${custName} with book ${bookTitle}`);
-    }
-}
 
 const favoriteLibrarian: Librarian /* & A */ = new UniversityLibrarian();
 favoriteLibrarian.name = 'Anna';
@@ -1260,33 +1019,23 @@ favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
 // 5.	Створіть функцію setDefaultConfig(), яка приймає об'єкт options. Тип для об'єкта TOptions опишіть інтерфейсом з необов'язковими числовими властивостями duration і speed. Функція повинна встановлювати значення властивостей за замовчуванням та деякі значення, якщо вони не задані, використовуючи логічний оператор налового присвоєння та повертати об'єкт.
 // ------------------------------------------------------------------------------------------
 
-type PersonBook = Person & Book;
-const PersonBook: PersonBook = {
-    name: 'Anna',
-    author: 'Anna',
-    available: false,
-    category: Category.Angular,
-    email: 'anna@example.com',
-    id: 1,
-    title: 'Unknown',
-};
+// const PersonBook: PersonBook = {
+//     name: 'Anna',
+//     author: 'Anna',
+//     available: false,
+//     category: Category.Angular,
+//     email: 'anna@example.com',
+//     id: 1,
+//     title: 'Unknown',
+// };
 
-type BookOrUndefined = Book | undefined;
 
-interface TOptions {
-    duration?: number;
-    speed?: number;
-}
 
-function setDefaultConfig(options: TOptions) {
-    options.duration ??= 100;
-    options.speed ??= 60;
 
-    return options;
-}
 
 // const options: TOptions = {duration: 20};
 // const options2 = setDefaultConfig(options);
 // console.log(options);
 // console.log(options2);
 // console.log(Object.is(options, options2));
+

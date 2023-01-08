@@ -12,5 +12,10 @@
     "editor.formatOnSave": true,
     "html.format.enable": false,
     "editor.formatOnPaste": false,
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "cSpell.words": [
+        "сheckout",
+        "Burchard",
+        "cust"
+    ]
 }
