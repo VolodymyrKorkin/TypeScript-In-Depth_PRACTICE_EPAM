@@ -1284,3 +1284,9 @@ function setDefaultConfig(options: TOptions) {
 
     return options;
 }
+
+// const options: TOptions = {duration: 20};
+// const options2 = setDefaultConfig(options);
+// console.log(options);
+// console.log(options2);
+// console.log(Object.is(options, options2));
