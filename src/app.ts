@@ -4,6 +4,7 @@ import { ReferenceItem, UL, RefBook } from './classes';
 import { Category } from './enums';
 import { printRefBook, createCustomerID, getTitles, сheckoutBooks } from './functions';
 import { Author, Book, Librarian, Logger } from './interfaces';
+import { Library } from './classes/library';
 
 // Greeting (check if webpack works)
 showHello('greeting', 'TypeScript');
@@ -1049,11 +1050,22 @@ const flag = true;
 //         .finally(() => console.log('Complete'));
 // }
 
-if(flag) {
-    const o = await import('./classes');
-    const reader = new o.Reader();
-    reader.name = 'Anna';
-    reader.take(getAllBooks()[0]);
+// if(flag) {
+//     const o = await import('./classes');
+//     const reader = new o.Reader();
+//     reader.name = 'Anna';
+//     reader.take(getAllBooks()[0]);
 
-    console.log(reader);
-}
+//     console.log(reader);
+// }
+
+// ==================================================================================================
+// Task 06.06. Type-Only Imports and Exports
+// ==================================================================================================
+
+// let library: Library = new Library();
+// let library: Library = {
+//     id: 1,
+//     adress: '',
+//     name: 'Anna'
+// } ;
