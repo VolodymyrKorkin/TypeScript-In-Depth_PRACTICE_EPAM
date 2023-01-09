@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 import { createCustomer } from './functions';
 import { Author, Book, Person } from './interfaces';
 
@@ -32,4 +33,19 @@ export type P3 = Param3<fn>;
 
 export type RequiredProps<T extends object> = {
     [prop in keyof T]: {} extends Pick<T, prop> ? never : prop;
+}[keyof T];
+
+export type OptionalProps<T extends object> = {
+    [prop in keyof T]: {} extends Pick<T, prop> ? prop : never;
+}[keyof T];
+
+type BookRequiredProps = RequiredProps<Book>;
+type BookOptionalProps = OptionalProps<Book>;
+
+type RemoveProps<T extends object, TProps extends keyof T> = {
+    [prop in keyof T as Exclude<prop, TProps>]: T[prop];
 };
+
+
+type BookRequiredProps = RemoveProps<Book, BookOptionalProps>;
+type BookOptionalProps = RemoveProps<Book, BookRequiredProps>;

@@ -1036,7 +1036,7 @@ const offer: any = {
 // Task 06.05. Dynamic Import Expression
 // ==================================================================================================
 
-const flag = true;
+// const flag = true;
 
 // if(flag) {
 //     import('./classes')
@@ -1076,12 +1076,12 @@ const flag = true;
 // Task 07.01. Generic Functions
 // ==================================================================================================
 
-const inventory: Book[] = [
-    { id: 10, title: 'The C Programming Language', author: '???', available: true, category: Category.Software },
-    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
-    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
-    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
-];
+// const inventory: Book[] = [
+//     { id: 10, title: 'The C Programming Language', author: '???', available: true, category: Category.Software },
+//     { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+//     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+//     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+// ];
 
 // const result1 = purge(inventory);
 // console.log(result1);
@@ -1136,3 +1136,44 @@ const inventory: Book[] = [
 // let params: Parameters<СreateCustomerFunctionType>;
 // params = ['Anna', 30, 'Kyiv'];
 // createCustomer(...params);
+
+// ==================================================================================================
+// Task 08.01. 08.02 Class Decorators (sealed)
+// ==================================================================================================
+
+// const favoriteLibrarian1 = new UL.UniversityLibrarian();
+// const favoriteLibrarian2 = new UL.UniversityLibrarian();
+// favoriteLibrarian1['a'] = 1;
+// UL.UniversityLibrarian['a'] = 2;
+// UL.UniversityLibrarian.prototype['a'] = 3;
+
+// favoriteLibrarian1.name = 'Anna';
+// favoriteLibrarian1['printLibrarian']();
+
+
+// ==================================================================================================
+// Task 08.03. Method Decorator (writable)
+// ==================================================================================================
+
+// const favoriteLibrarian = new UL.UniversityLibrarian();
+// console.log(favoriteLibrarian);
+// favoriteLibrarian.assistFaculty = null;
+// favoriteLibrarian.teachCommunity = null;
+
+
+// ==================================================================================================
+// Task 08.04. Method Decorator (timeout)
+// ==================================================================================================
+
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
+// refBook.printItem();
+
+
+// ==================================================================================================
+// Task 08.05. Parameter Decorator (logParameter)
+// ==================================================================================================
+
+const favoriteLibrarian = new UL.UniversityLibrarian();
+console.log(favoriteLibrarian);
+favoriteLibrarian.name = 'Anna';
+favoriteLibrarian.assistCustomer('Boris', 'LearnType');
