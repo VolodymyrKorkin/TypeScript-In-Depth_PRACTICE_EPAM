@@ -3,6 +3,7 @@
 import { Book, TOptions } from './interfaces';
 import { Category } from './enums';
 import { BookOrUndefined, BookProperties } from './types';
+import RefBook from './classes/encyclopedia';
 
 export function logBookTitles(titles: Array<string>): void {
     titles.forEach(title => console.log(title));
@@ -130,6 +131,12 @@ export function assertStringValue(data: any): asserts data is string {
     }
 }
 
+export function assertRefBookInstance(condition: any): asserts condition {
+    if (!condition) {
+        throw new Error('It is not an instance of RefBook');
+    }
+}
+
 
 export function bookTitleTransform(title: any): string {
     assertStringValue(title);
@@ -164,4 +171,9 @@ export function setDefaultConfig(options: TOptions) {
     options.speed ??= 60;
 
     return options;
+}
+
+export function printRefBook(data: any): void {
+    assertRefBookInstance(data instanceof RefBook);
+    data.printItem();
 }

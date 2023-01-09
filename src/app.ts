@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 
-import { ReferenceItem, UniversityLibrarian } from './classes';
-import { createCustomerID, getTitles, сheckoutBooks } from './functions';
+import { ReferenceItem, UL, RefBook } from './classes';
+import { Category } from './enums';
+import { printRefBook, createCustomerID, getTitles, сheckoutBooks } from './functions';
 import { Author, Book, Librarian, Logger } from './interfaces';
 
 // Greeting (check if webpack works)
@@ -88,7 +89,7 @@ function showHello(divName: string, name: string) {
 //      e.	Angular
 // -------------------------------------------------------------------------------------------------
 
-enum Category {JavaScript, CSS, HTML, TypeScript, Angular};
+// enum Category {JavaScript, CSS, HTML, TypeScript, Angular};
 
 type Books = {
     id: number;
@@ -915,6 +916,7 @@ const offer: any = {
 // ------------------------------------------------------------------------------------------
 
 // const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
 // refBook.printItem();
 // console.log(refBook);
 
@@ -959,25 +961,6 @@ const offer: any = {
 // ------------------------------------------------------------------------------------------
 
 
-class Encyclopedia extends ReferenceItem {
-    constructor(
-        id: number,
-        title: string,
-        year: number,
-        public edition: number
-    ) {
-        super(id, title, year);
-    }
-
-    override printItem(): void {
-        super.printItem();
-        console.log(`Edition: ${this.edition} (${this.year})`);
-    }
-
-    printCitation(): void {
-        console.log(`${this.title} - ${this.year}`);
-    }
-}
 
 // const refBook: Encyclopedia = new Encyclopedia(1, 'Learn TypeScript', 2022, 2);
 // refBook.printItem();
@@ -1000,9 +983,9 @@ class Encyclopedia extends ReferenceItem {
 // }
 
 
-const favoriteLibrarian: Librarian /* & A */ = new UniversityLibrarian();
-favoriteLibrarian.name = 'Anna';
-favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
+// const favoriteLibrarian: Librarian /* & A */ = new UL.UniversityLibrarian();
+// favoriteLibrarian.name = 'Anna';
+// favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
 // favoriteLibrarian.a = 2;
 
 
@@ -1030,12 +1013,47 @@ favoriteLibrarian.assistCustomer('Boris', 'Learn Typescript');
 // };
 
 
-
-
-
 // const options: TOptions = {duration: 20};
 // const options2 = setDefaultConfig(options);
 // console.log(options);
 // console.log(options2);
 // console.log(Object.is(options, options2));
 
+
+// ==================================================================================================
+// Task 06.03., 06.04 Default Export
+// ==================================================================================================
+
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
+// printRefBook(refBook);
+
+// const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
+// printRefBook(favoriteLibrarian);
+
+// ==================================================================================================
+// Task 06.05. Dynamic Import Expression
+// ==================================================================================================
+
+const flag = true;
+
+// if(flag) {
+//     import('./classes')
+//         .then(o => {
+//             const reader = new o.Reader();
+//             reader.name = 'Anna';
+//             reader.take(getAllBooks()[0]);
+
+//             console.log(reader);
+//         })
+//         .catch(err => console.log(err))
+//         .finally(() => console.log('Complete'));
+// }
+
+if(flag) {
+    const o = await import('./classes');
+    const reader = new o.Reader();
+    reader.name = 'Anna';
+    reader.take(getAllBooks()[0]);
+
+    console.log(reader);
+}
