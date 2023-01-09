@@ -1,10 +1,24 @@
+/* eslint-disable no-underscore-dangle */
 // ==================================================================================================
 // Task 06.03. Default Export
 // ==================================================================================================
 
+import { positiveInteger } from './decorators';
 import { ReferenceItem } from './Reference-Item';
 
 export default class Encyclopedia extends ReferenceItem {
+    private _copies: number;
+
+    @positiveInteger
+    get copies(): number {
+        return this._copies;
+    };
+
+    set copies(value: number) {
+        this._copies = value;
+    }
+
+
     constructor(
         id: number,
         title: string,

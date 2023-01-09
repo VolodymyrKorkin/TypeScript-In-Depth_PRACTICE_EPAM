@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { createCustomer } from './functions';
+import { createCustomer, getBooksByCategoryPromise } from './functions';
 import { Author, Book, Person } from './interfaces';
 
 // export type Book = {
@@ -47,5 +47,11 @@ type RemoveProps<T extends object, TProps extends keyof T> = {
 };
 
 
-type BookRequiredProps = RemoveProps<Book, BookOptionalProps>;
-type BookOptionalProps = RemoveProps<Book, BookRequiredProps>;
+// type BookRequiredProps = RemoveProps<Book, BookOptionalProps>;
+// type BookOptionalProps = RemoveProps<Book, BookRequiredProps>;
+
+export type Unpromisify<T> = T extends Promise<infer R> ? R : never;
+export type UnArray<T> = T extends Array<infer R> ? R : never;
+
+type pr = UnArray<Unpromisify<ReturnType<typeof getBooksByCategoryPromise>>>;
+

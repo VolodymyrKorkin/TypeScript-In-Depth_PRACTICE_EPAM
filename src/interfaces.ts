@@ -48,5 +48,12 @@ interface ShelfItem {
     title: string;
 }
 
+interface LibMgrCallback {
+    (err: Error | null, titles: string[] | null): void;
+}
 
-export { Author, ShelfItem, Magazine, Book, Librarian, Person, TOptions, A, DamageLogger as Logger };
+interface Callback<T> {
+    (err: Error | null, data: T | null): void;
+}
+
+export { Author, LibMgrCallback, Callback, ShelfItem, Magazine, Book, Librarian, Person, TOptions, A, DamageLogger as Logger };

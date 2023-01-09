@@ -2,7 +2,7 @@
 
 import { ReferenceItem, UL, RefBook, Shelf } from './classes';
 import { Category } from './enums';
-import { getObjectProperty, purge, printRefBook, calcTotalPages, getBookAuthorByIndex, createCustomerID, getTitles, сheckoutBooks, createCustomer } from './functions';
+import { getObjectProperty, purge, printRefBook, calcTotalPages, getBookAuthorByIndex, createCustomerID, getTitles, сheckoutBooks, createCustomer, getBooksByCategory, logCategorySearch, getBooksByCategoryPromise, logSearchResults } from './functions';
 import { Book, Librarian, Logger, TOptions, Magazine } from './interfaces';
 import { Library } from './classes/library';
 import { BookRequiredFields, UpdatedBook, СreateCustomerFunctionType } from './types';
@@ -1173,7 +1173,63 @@ const offer: any = {
 // Task 08.05. Parameter Decorator (logParameter)
 // ==================================================================================================
 
-const favoriteLibrarian = new UL.UniversityLibrarian();
-console.log(favoriteLibrarian);
-favoriteLibrarian.name = 'Anna';
-favoriteLibrarian.assistCustomer('Boris', 'LearnType');
+// const favoriteLibrarian = new UL.UniversityLibrarian();
+// console.log(favoriteLibrarian);
+// favoriteLibrarian.name = 'Anna';
+// favoriteLibrarian.assistCustomer('Boris', 'LearnType');
+
+// ==================================================================================================
+// Task 08.06. Property Decorator
+// ==================================================================================================
+
+// const favoriteLibrarian = new UL.UniversityLibrarian();
+// favoriteLibrarian.name = 'Anna';
+// console.log(favoriteLibrarian.name);
+// favoriteLibrarian.assistCustomer('Boris', 'LearnType');
+// console.log(favoriteLibrarian);
+
+
+// ==================================================================================================
+// Task 08.07. Accessor Decorator
+// ==================================================================================================
+
+// const refBook: RefBook = new RefBook(1, 'Learn TypeScript', 2022, 2);
+// refBook.copies = 10;
+// refBook.copies = -10;
+// console.log(refBook.copies);
+
+
+// ==================================================================================================
+// Task 09.01. Callback Functions
+// ==================================================================================================
+
+// console.log('Begin');
+// getBooksByCategory(Category.JavaScript, logCategorySearch);
+// getBooksByCategory(Category.Software, logCategorySearch);
+// console.log('End');
+
+// ==================================================================================================
+// Task 09.02. Promises
+// ==================================================================================================
+
+// console.log('Begin');
+// getBooksByCategoryPromise(Category.JavaScript)
+//     .then(titles => {
+//         console.log(titles);
+//         return Promise.resolve(titles.length);
+//     })
+//     .then(n => console.log(n))
+//     .catch(reason => console.log(reason));
+// getBooksByCategoryPromise(Category.Software)
+//     .then(titles => console.log(titles))
+//     .catch(reason => console.log(reason));
+// console.log('End');
+
+// ==================================================================================================
+// Task 09.03. Async Functions
+// ==================================================================================================
+
+console.log('Begin');
+logSearchResults(Category.JavaScript);
+logSearchResults(Category.Software);
+console.log('End');
