@@ -165,6 +165,11 @@ export function getProperty(book: Book, prop: BookProperties): any {
     return typeof value === 'function' ? value.name : value;
 }
 
+export function getObjectProperty<TObject, TKey extends keyof TObject>(obj: TObject, prop: TKey): TObject[TKey] | string {
+    const value = obj[prop];
+
+    return typeof value === 'function' ? value.name : value;
+}
 
 export function setDefaultConfig(options: TOptions) {
     options.duration ??= 100;
@@ -185,3 +190,4 @@ export function printRefBook(data: any): void {
 export function purge<T>(inventory: Array<T>): T[] {
     return inventory.slice(2);
 }
+

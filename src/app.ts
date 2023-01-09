@@ -1,10 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 
-import { ReferenceItem, UL, RefBook } from './classes';
+import { ReferenceItem, UL, RefBook, Shelf } from './classes';
 import { Category } from './enums';
-import { purge, printRefBook, calcTotalPages, getBookAuthorByIndex, createCustomerID, getTitles, сheckoutBooks } from './functions';
-import { Author, Book, Librarian, Logger } from './interfaces';
+import { getObjectProperty, purge, printRefBook, calcTotalPages, getBookAuthorByIndex, createCustomerID, getTitles, сheckoutBooks, createCustomer } from './functions';
+import { Book, Librarian, Logger, TOptions, Magazine } from './interfaces';
 import { Library } from './classes/library';
+import { BookRequiredFields, UpdatedBook, СreateCustomerFunctionType } from './types';
 
 // Greeting (check if webpack works)
 showHello('greeting', 'TypeScript');
@@ -564,11 +565,11 @@ const logDamage: Logger = (reason: string) => console.log(`Damaged: ${reason}`);
 // 4.	Оголосіть змінну favoriteAuthor, використовуючи інтерфейс Author, задайте значення у вигляді літерала об'єкта.
 // ------------------------------------------------------------------------------------------
 
-const favoriteAuthor: Author = {
-    name: 'Anna',
-    email: 'Anna@example.com',
-    numBooksPublished: 2
-};
+// const favoriteAuthor: Author = {
+//     name: 'Anna',
+//     email: 'Anna@example.com',
+//     numBooksPublished: 2
+// };
 
 
 // 04.03.05 ---------------------------------------------------------------------------------
@@ -1082,7 +1083,56 @@ const inventory: Book[] = [
     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
 ];
 
-const result1 = purge(inventory);
-console.log(result1);
-const result = purge([1,2,3]);
-console.log(result2);
+// const result1 = purge(inventory);
+// console.log(result1);
+// const result = purge([1,2,3]);
+// console.log(result2);
+
+
+// ==================================================================================================
+// Task 07.02. 07.03 Generic Interfaces and Classes
+// ==================================================================================================
+
+// const bookShelf: Shelf<Book> = new Shelf<Book>();
+// const bookShelf = new Shelf<Book>();
+// inventory.forEach(book => bookShelf.add(book));
+// console.log(bookShelf.getFirst().title);
+
+// const magazines: Magazine[] = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' }
+// ];
+
+// const magazineShelf = new Shelf<Magazine>();
+// magazines.forEach(mag => magazineShelf.add(mag));
+// // console.log(magazineShelf.getFirst().title);
+
+// magazineShelf.printTitles();
+// console.log(magazineShelf.find('Five Points'));
+
+// console.log(getObjectProperty(magazines[0], 'title'));
+// console.log(getObjectProperty<Book, 'author' | 'title'>(inventory[1], 'author'));
+
+// ==================================================================================================
+// Task 07.04. Utility Types
+// ==================================================================================================
+
+// const bookRequiredFields: BookRequiredFields = {
+//     author: 'Anna',
+//     available: false,
+//     category: Category.Angular,
+//     id: 1,
+//     markDamaged: null,
+//     pages: 200,
+//     title: 'Learn Angular'
+// };
+
+// const updatedBook: UpdatedBook = {
+//     id: 1,
+//     pages: 300,
+
+// };
+// let params: Parameters<СreateCustomerFunctionType>;
+// params = ['Anna', 30, 'Kyiv'];
+// createCustomer(...params);
