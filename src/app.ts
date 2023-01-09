@@ -2,7 +2,7 @@
 
 import { ReferenceItem, UL, RefBook } from './classes';
 import { Category } from './enums';
-import { printRefBook, createCustomerID, getTitles, сheckoutBooks } from './functions';
+import { purge, printRefBook, calcTotalPages, getBookAuthorByIndex, createCustomerID, getTitles, сheckoutBooks } from './functions';
 import { Author, Book, Librarian, Logger } from './interfaces';
 import { Library } from './classes/library';
 
@@ -1069,3 +1069,20 @@ const flag = true;
 //     adress: '',
 //     name: 'Anna'
 // } ;
+
+
+// ==================================================================================================
+// Task 07.01. Generic Functions
+// ==================================================================================================
+
+const inventory: Book[] = [
+    { id: 10, title: 'The C Programming Language', author: '???', available: true, category: Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+];
+
+const result1 = purge(inventory);
+console.log(result1);
+const result = purge([1,2,3]);
+console.log(result2);

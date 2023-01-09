@@ -177,3 +177,11 @@ export function printRefBook(data: any): void {
     assertRefBookInstance(data instanceof RefBook);
     data.printItem();
 }
+
+// ==================================================================================================
+// Task 07.01. Generic Functions
+// ==================================================================================================
+
+export function purge<T>(inventory: Array<T>): T[] {
+    return inventory.slice(2);
+}
